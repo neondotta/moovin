@@ -62,21 +62,38 @@
             $data = $query->fetch();
 
             $product = new Product();
-            $product->setIdProduct($data['idProduct']);
-            $product->setName($data['name']);
-            $product->setDescription($data['description']);
-            $product->setPrice($data['price']);
-            $product->setHeight($data['height']);
-            $product->setWidth($data['width']);
-            $product->setLength($data['length']);
-            $product->setValuePromotion($data['vale_promotion']);
-            $product->setActive($data['active']);
-            $product->setQuantity($data['quantity']);
+                $product->setIdProduct($data['idProduct']);
+                $product->setName($data['name']);
+                $product->setDescription($data['description']);
+                $product->setPrice($data['price']);
+                $product->setHeight($data['height']);
+                $product->setWidth($data['width']);
+                $product->setLength($data['length']);
+                $product->setValuePromotion($data['vale_promotion']);
+                $product->setActive($data['active']);
+                $product->setQuantity($data['quantity']);
 
             return $product;
 
         }
 
+        public function getPriceProduct($idProduct){
+
+            $sql = "SELECT price FROM product
+                    WHERE idProduct = :idProduct";
+
+            $query = $this->db()->prepare($sql);
+
+            $query->prepare(array(':idProduct' => $idProduct));
+
+            $data = $query->fetch();
+
+            $product = new Product();
+                $product->setPrice($data['price']);
+
+            return $product;
+
+        }
 
         public function getList(){
 

@@ -13,6 +13,7 @@
         private $idCoupon;
         private $idDelivery;
         private $status;
+        private $total;
 
         /**
          * @return mixed
@@ -92,6 +93,22 @@
         public function setStatus($status)
         {
             $this->status = $status;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getTotal()
+        {
+            return $this->total;
+        }
+
+        /**
+         * @param mixed $total
+         */
+        public function setTotal($total)
+        {
+            $this->total = $total;
         }
 
 

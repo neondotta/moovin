@@ -46,7 +46,6 @@ class CartDAO extends DAO{
             $cartController = new CartController();
                $idNewCart = $cartController->createCart();
 
-               print_r($idNewCart);
         }else {
             $cart = new Cart();
                 $cart->setIdCart($data['idCart']);
