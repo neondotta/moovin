@@ -26,7 +26,30 @@ class CartProductDAO extends DAO{
         return $this->db()->lastInsertId();
     }
 
+    public function viewProductInCart($idProduct){
 
+        $sql = 'SELECT * FROM product_cart
+          WHERE idProduct = :idProduct
+          AND idCart = :idCart';
+
+        $idUser = $_SESSION['login']->getIdUser();
+
+        $cartDAO = new CartDAO();
+        $idCart = $cartDAO->CartActiveId($idUser);
+
+        $query = $this->db()->prepare($sql);
+
+        $query->execute(array(':idProduct' => $idProduct, ':idCart' => $idCart));
+
+        $result = $query->fetch();
+
+        if(!empty($result)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 
     public function getCart($user, $cart){
 
@@ -84,6 +107,18 @@ class CartProductDAO extends DAO{
         $query->bindParam(':quantity', $quantity, PDO::PARAM_INT);
 
         return $query->execute(array(':quantity' => $quantity,':idProduct' => $idProduct, ':idCart' => $idCart));
+
+    }
+
+    public function deleteItemOfCart($idProduct, $idCart){
+
+        $sql = 'DELETE FROM product_cart
+              WHERE idProduct = :idProduct
+              AND idCart = :idCart';
+
+        $query = $this->db()->prepare($sql);
+
+        return $query->execute(array(':idProduct' => $idProduct, ':idCart' => $idCart));
 
     }
 

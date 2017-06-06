@@ -51,11 +51,22 @@
 	                        		<div class="col-md-10">
 										Categoria: <?=$product->getIdCategory()->getName()?>
 									</div>
+                                    <?php
+                                        $cartProductController = new CartProductController();
+                                           $result = $cartProductController->viewProductInCart($product->getIdProduct());
 
-                                    <div class="col-md-1">
-                                        <a href="/moovin/?r=cart/insertProductInCar&idProduct=<?=$product->getIdProduct()?>">Adicionar no carrinho</a>
-                                    </div>
-								
+                                        if(!$result) {
+                                    ?>
+                                        <div class="col-md-1">
+                                            <a href="/moovin/?r=cart/insertProductInCar&idProduct=<?= $product->getIdProduct() ?>">Adicionar
+                                            no carrinho</a>
+                                    <?php
+                                        }else{
+                                    ?>
+                                        <p>Produto já adicionado</p>
+                                    <?php
+                                        }
+                                    ?>
 									<div class="col-md-1">
                                         <a href="/moovin/?r=product/edit&id=<?=$product->getIdProduct()?>">Editar</a>
                                     </div>

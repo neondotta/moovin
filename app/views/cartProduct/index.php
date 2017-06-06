@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="col-md-1">
-                                    <a href="/moovin/?r=product/delete&id=<?=$cartProduct->getIdProduct()->getIdProduct()?>">Excluir</a>
+                                    <a href="/moovin/?r=cartProduct/deleteItemOfCart&idProduct=<?=$cartProduct->getIdProduct()->getIdProduct()?>">Excluir</a>
                                 </div>
                         </li>
                     </ul>
