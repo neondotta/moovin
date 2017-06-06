@@ -42,8 +42,9 @@
                                 </div>
                                 <div class="col-md-10">
                                     Quantidade:
-                                    <form method="POST">
-                                        <input type="number" value="<?=$cartProduct->getQuantity()?>">
+                                    <form method="POST"
+                                          action="/moovin/?r=cartProduct/updateQuantityProduct&idProduct=<?=$cartProduct->getIdProduct()->getIdProduct()?>&idCart=<?=$cartProduct->getIdCart()?>">
+                                        <input type="number" name="quantity" value="<?=$cartProduct->getQuantity()?>">
                                         <input type="submit" value="Cadastrar" class="btn btn-primary">
                                     </form>
                                 </div>

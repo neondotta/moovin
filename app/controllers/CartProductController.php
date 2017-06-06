@@ -51,4 +51,28 @@ class CartProductController{
 
     }
 
+    public function updateQuantityProduct(){
+        echo '<pre>';
+        print_r($_POST);
+        print_r($_GET);
+        if(!empty($_SESSION)){
+
+            $idProduct = $_GET['idProduct'];
+            $idCart = $_GET['idCart'];
+
+            $cartProduct = new CartProduct();
+                $cartProduct->setQuantity($_POST['quantity']);
+
+            $quantity = $cartProduct->getQuantity();
+
+            $cartProductDAO = new CartProductDAO();
+               $cartProductDAO->updateQuantityProduct($quantity, $idProduct, $idCart);
+
+                header('Location: /moovin/?r=cartProduct/myCart');
+        }else{
+            header('Location: /moovin/?r=cartProduct/myCart');
+        }
+
+    }
+
 }

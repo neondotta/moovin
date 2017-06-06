@@ -61,12 +61,29 @@ class CartProductDAO extends DAO{
 
             $cartProduct = new CartProduct();
                 $cartProduct->setIdProduct($product);
+                $cartProduct->setIdCart($data['idCart']);
                 $cartProduct->setQuantity($data['quantity']);
 
             array_push($list, $cartProduct);
         }
 
         return $list;
+
+    }
+
+    public function updateQuantityProduct($quantity, $idProduct, $idCart){
+
+        $sql = "UPDATE product_cart 
+                SET 
+                  quantity = :quantity
+                WHERE idProduct = :idProduct
+                AND idCart = :idCart";
+
+        $query = $this->db()->prepare($sql);
+
+        $query->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+
+        return $query->execute(array(':quantity' => $quantity,':idProduct' => $idProduct, ':idCart' => $idCart));
 
     }
 
